@@ -108,6 +108,7 @@ public class IntentPlugin extends CordovaPlugin {
             PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
             result.setKeepCallback(true);
             this.onNewIntentCallbackContext.sendPluginResult(result);
+			getIntent().removeExtra("key");
         }
     }
 
