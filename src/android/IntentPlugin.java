@@ -72,6 +72,7 @@ public class IntentPlugin extends CordovaPlugin {
 
         Intent intent = cordova.getActivity().getIntent();
         context.sendPluginResult(new PluginResult(PluginResult.Status.OK, getIntentJson(intent)));
+        intent.putExtra("used", true);
         return true;
     }
 
@@ -104,12 +105,10 @@ public class IntentPlugin extends CordovaPlugin {
     @Override
     public void onNewIntent(Intent intent) {
         if (this.onNewIntentCallbackContext != null) {
-
-            PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
+			PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
             result.setKeepCallback(true);
             this.onNewIntentCallbackContext.sendPluginResult(result);
-			getIntent().removeExtra("key");
-        }
+		}
     }
 
     /**
